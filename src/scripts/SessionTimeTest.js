@@ -37,6 +37,13 @@
 			console.log(time.nextScheduled(pattern, time.weekday('Thu 12:00 PM')).format());
 			console.log('expect 5-5');
 			console.log(time.nextScheduled(pattern, time.weekday('Sat 12:00 PM')).format());
+
+			console.log('expect nothing');
+			time.events.recurring('------- 7:00 pm', reportTime);
+			time.events.update(time.now.add('weeks', 1));
+			console.log('expect 7 times');
+			time.events.recurring('SMTWTFS 5:45 AM', reportTime);
+			time.events.update(time.now.add('weeks', 1));
 			
 		}
 	};

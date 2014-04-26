@@ -33,13 +33,11 @@
 			var id = _.uniqueId(),
 				data = { id: id };
 
-			this._addEvent(timestamp, data, callback, context);
-
-			return id;
+			return this._addEvent(timestamp, data, callback, context) ? id : false;
 		},
 
 		recurring: function(pattern, callback, context) {
-			var timestamp =  this.time.weekday(pattern),
+			var timestamp =  this.time.pattern(pattern),
 				id = _.uniqueId(),
 				data = {
 					id: id,
@@ -47,9 +45,7 @@
 					pattern: pattern
 				};
 
-			this._addEvent(timestamp, data, callback, context);
-
-			return id;
+			return this._addEvent(timestamp, data, callback, context) ? id : false;
 		},
 
 		cancel: function(id) {
@@ -65,6 +61,8 @@
 		},
 
 		_addEvent: function(timestamp, data, callback, context) {
+			if(timestamp === undefined) return false;
+
 			var events = this._events,
 				e = {
 					timestamp: moment(timestamp).unix(),
@@ -76,6 +74,7 @@
 			_.extend(e, data || {});
 
 			events.splice(idx, 0, e);	
+			return true;
 		},
 
 		_recurEvent: function(e) {
@@ -88,7 +87,7 @@
 					pattern: e.pattern
 				};
 			
-			tmp = this.time.weekday(e.pattern, tmp);
+			tmp = this.time.pattern(e.pattern, tmp);
 
 			this._addEvent(tmp, data, e.callback, e.context);
 		}

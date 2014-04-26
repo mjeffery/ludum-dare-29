@@ -8,12 +8,14 @@
 	}
 
 	var sessionRegex = /^\s*([-a-z]{7})\s+(\d?\d:\d{2}\s+(?:am|pm))\s*$/i,
-		daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+		daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 	SessionTime.prototype = {
 		weekday: function(pattern, from) {
-			var tmp = moment(pattern, 'ddd h:mm A');
-				day = tmp.day(),
+			var tmp = moment(pattern, 'ddd h:mm A', true);
+			if(!tmp.isValid()) return undefined;
+
+			var day = tmp.day(),
 				hour = tmp.hour(),
 				min = tmp.minute(),
 				next = from === undefined ? this.now : moment(from);
@@ -65,11 +67,32 @@
 					times[0].add('week', 1);
 					return times[0];
 				}
-				else
+				// we're not the same as the index
+				else if(now.isBefore(times[idx])) {
 					return times[idx];
+				}
+				//we are, so try next index
+				else {
+					idx++;
+					// but be careful of wrap around again
+					if(idx >= times.length) {
+						times[0].add('week', 1);
+						return times[0];
+					}
+					else
+						return times[idx];
+				}
 			}
 
 			return undefined;
+		},
+
+		pattern: function(pattern, from) {
+			var result = this.nextScheduled(pattern, from);
+			if(result === undefined)
+				result = this.weekday(pattern, from);
+
+			return result;
 		},
 
 		_sortBy: function(time) {
