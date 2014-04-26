@@ -14,6 +14,7 @@
 
 			//PRELOAD ASSETS
 			Town.preload(load);
+			Actor.preload(load);
 		},
 
 		onLoadComplete: function() {
