@@ -15,6 +15,9 @@
 			//PRELOAD ASSETS
 			Town.preload(load);
 			Actor.preload(load);
+			Door.preload(load);
+
+			load.bitmapFont('minecraftia', 'assets/font/minecraftia.png', 'assets/font/minecraftia.xml');
 		},
 
 		onLoadComplete: function() {
