@@ -2,6 +2,10 @@
 	function SessionTimeTest() {}
 
 	SessionTimeTest.prototype = {
+		preload: function() {
+			this.load.bitmapFont('minecraftia', 'assets/font/minecraftia.png', 'assets/font/minecraftia.xml');
+		},
+
 		create: function() {
 			var session = this.game.session,
 				time = session.time;
@@ -44,7 +48,26 @@
 			console.log('expect 7 times');
 			time.events.recurring('SMTWTFS 5:45 AM', reportTime);
 			time.events.update(time.now.add('weeks', 1));
-			
+
+			var timer = this.timer = this.add.bitmapText(10, 0, 'minecraftia', time.text, 16);
+		
+			var key = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			key.onDown.add(function() {
+				console.log("pressed space");
+				time.addTime(0, 15, function(timestamp) {
+					console.log('time is now: ' + timestamp.format());
+				});
+			});
+
+			this.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
+		},
+
+		update: function() {
+			var session = this.game.session,
+				timer = this.timer;
+
+			session.update(); 
+			timer.text = session.time.text;
 		}
 	};
 

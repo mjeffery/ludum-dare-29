@@ -2,6 +2,8 @@
 	function SessionTimer(time) {
 		this.time = time;
 		this._events = [];
+
+		this.onElapsedTime = new Phaser.Signal(); //This signal is fired whenever the time advances
 	}
 
 	SessionTimer.prototype = {

@@ -5,7 +5,11 @@
 		this.frame = type || 0;
 		this.smoothed = false;
 		this.scale.setTo(4, 4);
+
 		this.inputEnabled = true;
+		//this.events.onInputOver.add(this.onInputOver, this);
+		//this.events.onInputOut.add(this.onInputOver, this);
+		//this.events.onInputDown.add(this.onInputDown, this);
 	}
 
 	_.extend(Door, {

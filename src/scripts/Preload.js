@@ -13,6 +13,9 @@
 			load.onLoadComplete.addOnce(this.onLoadComplete, this);
 
 			//PRELOAD ASSETS
+			IndoorWalls.preload(load);
+			SceneObject.preload(load);
+			HUD.preload(load);
 			Town.preload(load);
 			Actor.preload(load);
 			Door.preload(load);
