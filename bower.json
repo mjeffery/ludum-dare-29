@@ -1,0 +1,34 @@
+{
+  "name": "ludum-dare-29",
+  "version": "0.0.0",
+  "authors": [
+    "mjeffery <michael.jeffery@gmail.com>"
+  ],
+  "description": "Ludum Dare #29 Beneath the Surface",
+  "main": "index.html",
+  "keywords": [
+    "gamejam",
+    "game",
+    "html5",
+    "phaser",
+    "LD48",
+    "ludum",
+    "dare",
+    "beneath",
+    "the",
+    "surface"
+  ],
+  "license": "none",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser-official": "~2.0.3",
+    "lodash": "~2.4.1"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "ludum-dare-29",
+  "version": "0.0.0",
+  "description": "Ludum Dare #29 Beneath the Surface",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gamejam",
+    "game",
+    "html5",
+    "phaser",
+    "ludum",
+    "dare",
+    "beneath",
+    "the",
+    "surface"
+  ],
+  "author": "mjeffery",
+  "license": "none",
+  "devDependencies": {
+    "load-grunt-tasks": "^0.4.0",
+    "grunt": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-usemin": "^2.1.1",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-filerev": "^0.2.1",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-replace": "^0.7.7"
+  }
+}
