@@ -13,6 +13,7 @@
 			load.onLoadComplete.addOnce(this.onLoadComplete, this);
 
 			//PRELOAD ASSETS
+			Town.preload(load);
 		},
 
 		onLoadComplete: function() {
