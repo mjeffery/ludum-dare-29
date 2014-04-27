@@ -4,12 +4,10 @@
 
 		var map = game.add.tilemap();
 
-		map.addTilesetImage('home-walls', undefined, 16, 64);
+	//TODO does not support scaling for collision!, use prescaled graphics!
+		map.addTilesetImage('home-walls-scaled', undefined, 64, 256);
 
-		var layer = this.layer = map.create('walls', width + 2 * IndoorWalls.OFFSET, 1, 16, 64);
-		layer.smoothed = false;
-		layer.scale.setTo(4, 4);
-		layer.fixedToCamera = false;
+		var layer = this.layer = map.create('walls', width + 2 * IndoorWalls.OFFSET, 1, 64, 256);
 
 		for(var i = IndoorWalls.OFFSET; i < width + IndoorWalls.OFFSET; i++) 
 			map.putTile(IndoorWalls.Constants.EMPTY_WALL, i, 0);
@@ -17,7 +15,9 @@
 		map.putTile(IndoorWalls.Constants.LEFT_WALL, IndoorWalls.OFFSET, 0);
 		map.putTile(IndoorWalls.Constants.RIGHT_WALL, width + IndoorWalls.OFFSET, 0);
 
-		game.world.setBounds(0, 0, (IndoorWalls.OFFSET * 2 + width) * 64, 480)
+		game.world.setBounds(0, 0, (IndoorWalls.OFFSET * 2 + width) * 64, 480);
+
+		map.setCollision([0,3], true, layer);
 	}
 
 	_.extend(IndoorWalls, {
@@ -29,7 +29,7 @@
 		},
 		OFFSET: 2,
 		preload: function(load) {
-			load.image('home-walls', 'assets/spritesheet/home walls.png');
+			load.image('home-walls-scaled', 'assets/spritesheet/home walls scaled.png');
 		}
 	});
 

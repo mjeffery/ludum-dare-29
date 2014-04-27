@@ -13,6 +13,7 @@
 		this.state = 'standing';
 
 		game.physics.enable(this, Phaser.Physics.ARCADE);
+		this.body.setSize(4, 16, 2, 0);
 
 		this.events.onArrived = new Phaser.Signal();
 	}

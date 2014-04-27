@@ -9,7 +9,9 @@
 				add = this.add,
 				player = this.player = new Actor(this.game, 240, 250);
 
-			new IndoorWalls(game, 10);
+			game.physics.enable(Phaser.Physics.ARCADE);
+
+			var walls = this.walls = new IndoorWalls(game, 10);
 
 			var bg = this.background = add.group();
 			add.existing(player);
@@ -26,12 +28,21 @@
 		},
 
 		update: function() {
+			var player = this.player,
+				layer = this.walls.layer;
+
+			this.game.physics.arcade.collide(player, layer);
+
 			this.game.session.update(); //where does this go?
 			this.player.think();
+
+
 		},
 
 		render: function() {
-			game.debug.cameraInfo(game.camera, 32, 300);
+			//game.debug.cameraInfo(game.camera, 32, 300);
+			//game.debug.body(this.player);
+			//this.walls.layer.renderDebug();
 		},
 
 		onDown: function(pointer) {
